@@ -1,0 +1,12 @@
+.employee-info-flex {
+    display:flex;
+    flex-direction:row;
+    gap:3rem;
+  }
+  .semi-container{
+    display:flex;
+    flex-direction:row;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+  }
