@@ -1,15 +1,5 @@
   
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6">
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="{{url('employee')}}">
-                        <!-- Logo icon -->
-                        <b class="logo-icon">
-                            <!-- Dark Logo icon -->
-                            <style>
+       <style>
                               .logo-img{
                                 height:50px;
                                 width:50px;
@@ -20,7 +10,25 @@
                                  color:black; opacity:70%;
                               
                               }
+                              .topbar{
+                                padding-right: 20px;
+                              }
+                            
                             </style>
+
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin6">
+                    
+
+
+
+                    @auth
+                    <a class="navbar-brand" href="{{url('employee')}}">
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!-- Dark Logo icon -->
+                            
                             <img class="logo-img" src="{{asset('plugins/images/logo.png')}}"  alt="homepage" />
                         </b>
                         <!--End Logo icon -->
@@ -30,6 +38,28 @@
                             <b> Satoripop </b>
                         </span>
                     </a>
+                    @endauth
+                    {{-- @guest
+                    <a class="navbar-brand" href="{{url('login')}}">
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!-- Dark Logo icon -->
+                            
+                            <img class="logo-img" src="{{asset('plugins/images/logo.png')}}"  alt="homepage" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <b> Satoripop </b>
+                        </span>
+                    </a>
+                    @endguest --}}
+
+
+
+
+
                    
                     <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
                         href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
@@ -47,22 +77,29 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
+                        @guest
                         <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
-                                <a href="" class="active">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
+                            <a href="{{ url('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+
                         </li>
+                        @endguest
+                        @auth
+                        <li class=" in">
+                            <a href="{{ url('logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
+
+                        </li>
+                        @endauth
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
+                        @auth
                         <li>
-                            <a class="profile-pic" href="#">
+                        
+                            <a class="profile-pic " href="#">
                                 <img src="{{asset('plugins/images/users/varun.jpg')}}" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium">Mouheb</span></a>
+                                    class="img-circle"><span class="text-white font-medium">{{session('name')}}</span></a>
                         </li>
+                        @endauth
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->

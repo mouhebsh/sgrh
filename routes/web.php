@@ -10,15 +10,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/register', function () {
-    return view('auth/register');
-});
-Route::get('/login', function () {
-    return view('auth/login');
-});
 
+Route::get("/login", [EmployeeController::class, 'login']);
+Route::get("/logout", [EmployeeController::class, 'logout']);
+Route::post("/authenticate", [EmployeeController::class, 'authenticate']);
 Route::resource('/employee', EmployeeController::class);
 Route::resource('/project', ProjectController::class);
 Route::resource('/job', JobController::class);
-Route::resource('/auth', JobController::class);
 

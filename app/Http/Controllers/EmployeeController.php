@@ -6,7 +6,10 @@ use App\Models\Employee;
 use App\Models\Job;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 class EmployeeController extends Controller
 {
@@ -66,6 +69,7 @@ class EmployeeController extends Controller
         $employee->address = request('address');
         $employee->phone = request('phone');
         $employee->email = request('email');
+        $employee->password = Hash::make(request('password'));
         $employee->job_id = $job->id;
         if ($project == null){ 
             $employee->project_id = null;
@@ -107,6 +111,7 @@ class EmployeeController extends Controller
                 'address' => 'required',
                 'phone' => 'required|numeric|digits:8',
                 'email' => 'required|email'
+            
                 
             ],
             [
@@ -126,6 +131,7 @@ class EmployeeController extends Controller
         $job = Job::where('name', $employee_job)->first();
         $employee->name = request('name');
         $employee->address = request('address');
+        $employee->password = Hash::make(request('password'));
         $employee->phone = request('phone');
         $employee->email = request('email');
         $employee->job_id = $job->id;
@@ -150,6 +156,37 @@ class EmployeeController extends Controller
         Employee::destroy($id);
         return redirect('employee')->with('flash_message', 'Employee deleted!');
     }
+    public function login(){
+        return view('employees.login');
+    }
 
-    
+
+    public function authenticate(Request $request){
+
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+// dd($credentials);
+        if (Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            $request->session()->put('name', Auth::user()->name);
+            return redirect('employee')->with(['success' => "logged in successfully !"]);
+        }
+        else{
+
+            return back()->withErrors(['failed'=>"Invalid Username or Password !"]);
+        }
+
+    }
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('login');
+    }
+
+
+
 }

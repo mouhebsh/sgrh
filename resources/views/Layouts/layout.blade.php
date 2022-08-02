@@ -44,7 +44,9 @@
         @else
         @endif
      --}}
+        @auth
         @include('layouts.side')
+        @endauth
         @include('layouts.nav')
         @yield('content')
     

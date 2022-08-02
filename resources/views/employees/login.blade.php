@@ -9,17 +9,23 @@
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Login</h2>
+              @error('failed')
+              <div class="alert alert-danger">
+              {{ $message }}
+              </div>
 
-              <form>
+              @enderror
+              <form action={{url("/authenticate")}} method="POST">
+              @csrf()
   <!-- Email input -->
   <div class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
+    <input type="email" name="email" id="form2Example1" class="form-control" />
     <label class="form-label" for="form2Example1">Email address</label>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
+    <input type="password" name="password" id="form2Example2" class="form-control" />
     <label class="form-label" for="form2Example2">Password</label>
   </div>
 
@@ -35,12 +41,9 @@
   </div>
 
   <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+  <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
-  <!-- Register buttons -->
-  <div class="text-center">
-    <p>Not a member? <a href="{{url('register')}}">Register</a></p>
-  </div>
+  
 </form>
 
             </div>

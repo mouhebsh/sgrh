@@ -63,6 +63,14 @@
                                     </div>
 
                                     <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Password</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="password" name="password" id="password"
+                                                class="form-control p-0 border-0">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Birthday</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="date" id="start" name="birthday" 
