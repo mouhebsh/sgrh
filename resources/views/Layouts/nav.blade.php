@@ -24,7 +24,7 @@
 
 
                     @auth
-                    <a class="navbar-brand" href="{{url('employee')}}">
+                    <a class="navbar-brand" href="{{url('user')}}">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->

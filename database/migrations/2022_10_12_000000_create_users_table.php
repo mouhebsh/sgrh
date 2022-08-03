@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('name');
@@ -28,6 +27,7 @@ return new class extends Migration
             $table->foreign('project_id')->references('id')->on('projects');
             $table->unsignedBigInteger('job_id');
             $table->foreign('job_id')->references('id')->on('jobs');
+            $table->integer('type')->default(0);
         }); 
     }
 
@@ -37,6 +37,7 @@ return new class extends Migration
      * @return void
      */
     public function down()
-    {   Schema::dropIfExists('employees');
-     }
+    {
+        Schema::dropIfExists('users');
+    }
 };

@@ -12,17 +12,15 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name','email','password','phone','address','job','birthday','teamleader','type'];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,4 +40,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function job()
+    {
+        return $this->belongsto(Job::class);
+    }
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+
 }

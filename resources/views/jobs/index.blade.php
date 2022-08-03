@@ -60,7 +60,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                @include('employees.alert')
+                                                @include('users.alert')
                                             </div>
                                         </div>
                                     </li>
@@ -113,7 +113,7 @@
                                         </style>
  
                                         <td class="buttons-flex">
-                                            <form  method="POST" action="{{ url('/employee' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            <form  method="POST" action="{{ url('/user' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Employee" onclick="return confirm(&quot;Are You Sure You Want To Delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>

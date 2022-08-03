@@ -18,7 +18,7 @@
                     <div class="col-lg-8 col-xlg-9 col-md-12">
                         <div class="card">
                             <div class="card-body">
-                               @include('employees.alert')
+                               @include('users.alert')
 
                                 <form class="form-horizontal form-material" action="{{ url('project/' .$projects->id) }}" method="post">
                                           {!! csrf_field() !!}

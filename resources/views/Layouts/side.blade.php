@@ -4,14 +4,14 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('employee')}}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('user')}}"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('employee/create')}}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('user/create')}}"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="hide-menu">Add New Employee</span>
@@ -32,21 +32,21 @@
                             </a>
                         </li>
                         {{-- <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('employee/notify')}}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('user/notify')}}"
                                 aria-expanded="false">
                                 <i class="fa fa-font" aria-hidden="true"></i>
                                 <span class="hide-menu">Contact Someone</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('employee/myNotifications')}}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('user/myNotifications')}}"
                                 aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
                                 <span class="hide-menu">My Notificatoins</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('employee/calendar')}}"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('user/calendar')}}"
                                 aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
                                 <span class="hide-menu">Calendar</span>

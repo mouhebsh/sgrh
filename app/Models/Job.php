@@ -12,8 +12,8 @@ class Job extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'salary'];
 
-    public function employees()
+    public function users()
     {
-        return $this->hasMany(Employee::class);
+        return $this->hasMany(User::class);
     }
 }

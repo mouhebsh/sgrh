@@ -22,16 +22,16 @@
                                     <div class="user-content">
                                         <a href="javascript:void(0)"><img src="{{asset('plugins/images/users/genu.jpg')}}"
                                                 class="thumb-lg img-circle" alt="img"></a>
-                                        <h4 class="text-white mt-2">{{$employees->name}}</h4>
-                                        <h5 class="text-white mt-2">{{$employees->email}}</h5>
+                                        <h4 class="text-white mt-2">{{$users->name}}</h4>
+                                        <h5 class="text-white mt-2">{{$users->email}}</h5>
                                         
                                     </div>
                                 </div>
                             </div>
                             <div class="user-btm-box mt-5 d-md-flex">
                                 <div class="col-md-12 col-sm-12 text-center">
-                                    <h1> {{$employees->job->name}}</h1>
-                                    @if ($employees->teamleader == 1)
+                                    <h1> {{$users->job->name}}</h1>
+                                    @if ($users->teamleader == 1)
                                     <h4> Team Leader</h4>
                                     @endif
 
@@ -54,17 +54,17 @@
                                 <p class="card-text">Birthday : </p><br/>
                               </div>
                               <div>
-                              <h5 class="card-title">{{ $employees->name }}</h5><br/>
-                                <p class="card-text">{{ $employees->address }}</p><br/>
-                                <p class="card-text">{{ $employees->phone }}</p><br/>
-                                <p class="card-text">{{ $employees->email }}</p><br/>
-                                <p class="card-text">{{ $employees->job->name }}</p><br/>
-                                @if (!$employees->project_id)
+                              <h5 class="card-title">{{ $users->name }}</h5><br/>
+                                <p class="card-text">{{ $users->address }}</p><br/>
+                                <p class="card-text">{{ $users->phone }}</p><br/>
+                                <p class="card-text">{{ $users->email }}</p><br/>
+                                <p class="card-text">{{ $users->job->name }}</p><br/>
+                                @if (!$users->project_id)
                                 <p> No project Yet </p><br/>
                                 @else 
-                                <p class="card-text">{{ $employees->project->name }}</p><br/>
+                                <p class="card-text">{{ $users->project->name }}</p><br/>
                                 @endif
-                                <p class="card-text">{{ $employees->birthday }}</p><br/>
+                                <p class="card-text">{{ $users->birthday }}</p><br/>
                               </div>
                             </div>
                         </div>

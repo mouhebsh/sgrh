@@ -50,7 +50,7 @@
                                                 <label class="col-sm-12">Project Leader </label>
                                                 <div class="col-sm-12 border-bottom">
                                                     <select name="leader" id="projectleader" class="form-select shadow-none p-0 border-0 form-control-line">
-                                                        @foreach ($employees as $item)
+                                                        @foreach ($users as $item)
                                                         <option value="{{$item->name}}">{{$item->name}}</option>
                                                         @endforeach
                                                     </select>
@@ -77,7 +77,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                @include('employees.alert')
+                                                @include('users.alert')
                                             </div>
                                         </div>
                                     </li>

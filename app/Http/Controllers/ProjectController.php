@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
+use App\Models\User;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,9 +16,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        $users = User::all();
         $projects = Project::all();
-        return view('projects.index')->with('projects', $projects)->with('employees',$employees);;
+        return view('projects.index')->with('projects', $projects)->with('users',$users);;
     }
 
     /**
@@ -60,7 +60,7 @@ class ProjectController extends Controller
    $emp_leader = request('leader'); 
    
    if( $project->save()){
-       DB::table('employees')->where('name', $emp_leader)->update(array(
+       DB::table('users')->where('name', $emp_leader)->update(array(
          'teamleader' => 1,
          'project_id' => $project->id,
         ));
@@ -89,8 +89,8 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        $employees = Employee::all();
-        return view('projects.edit')->with('projects',$project)->with('employees',$employees);
+        $users = User::all();
+        return view('projects.edit')->with('projects',$project)->with('users',$users);
 
     }
 
@@ -131,11 +131,11 @@ class ProjectController extends Controller
             $exleader = $project->leader;
             $project->leader = $newleader;
             if( $project->save()){
-                DB::table('employees')->where('name', $newleader)->update(array(
+                DB::table('users')->where('name', $newleader)->update(array(
                 'project_id' => $project->id,
                 'teamleader' => 1,
                 ));
-                DB::table('employees')->where('name', $exleader)->update(array(
+                DB::table('users')->where('name', $exleader)->update(array(
                 'project_id' => null,
                 'teamleader' => 0,
                 ));
@@ -154,7 +154,6 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         Project::destroy($id);
-        // $employee = 
         return redirect('project')->with('flash_message', 'Project deleted!');
     }
 }

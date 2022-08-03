@@ -88,8 +88,8 @@ class JobController extends Controller
     public function show($id)
     {
         $job = Job::find($id);
-        $employers = $job->employees;
-        return view('jobs.show')->with('employers',$employers);
+        $users = $job->users;
+        return view('jobs.show')->with('users',$users);
 
     }
 

@@ -13,9 +13,9 @@ class Project extends Model
     protected $fillable = ['name', 'leader','owner','deadline'];
 
 
-    public function employee(){
+    public function user(){
 
-        return $this->hasMany(Employee::class);
+        return $this->hasMany(User::class);
     }
 }
 
