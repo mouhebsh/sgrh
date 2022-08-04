@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         $jobs = Job::all();
         $projects = Project::all();
-        return view('users.create')->with('jobs', $jobs)->with('projects',$projects);
+        return view('users.rh.create')->with('jobs', $jobs)->with('projects',$projects);
     }
 
 
@@ -101,7 +101,7 @@ class UserController extends Controller
         $jobs = Job::all();
         $projects = Project::all();
         $user = User::find($id);
-        return view('users.edit')->with('users', $user)->with('jobs',$jobs)->with('projects',$projects);
+        return view('users.rh.edit')->with('users', $user)->with('jobs',$jobs)->with('projects',$projects);
     }
 
 
