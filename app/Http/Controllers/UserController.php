@@ -50,7 +50,7 @@ class UserController extends Controller
                 'name' => 'required',
                 'address' => 'required',
                 'phone' => 'required|numeric|digits:8',
-                'email' => 'required|email|unique:employees'
+                'email' => 'required|email|unique:users'
             ],
             [
                 'name.required' => 'You have to Input a name',
@@ -83,7 +83,7 @@ class UserController extends Controller
         $user->birthday = request('birthday');
         $user->teamleader = 0;
         if ($user->save()) {
-            return redirect('User')->with('success', 'User Stored Successfully.');
+            return redirect('user')->with('success', 'User Stored Successfully.');
         }
     }
 

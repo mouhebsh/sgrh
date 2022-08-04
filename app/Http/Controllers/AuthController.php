@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function login(){
-        return view('employees.login');
+        return view('users.login');
     }
 
 
@@ -23,7 +23,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)){
             $request->session()->regenerate();
             $request->session()->put('name', Auth::user()->name);
-            return redirect('employee')->with(['success' => "logged in successfully !"]);
+            return redirect('user')->with(['success' => "logged in successfully !"]);
         }
         else{
 

@@ -100,7 +100,7 @@
                                         <td>{{$item->id}}  </td>
                                         <td> {{$item->name}} </td>
                                         <td>{{$item->salary}}  </td>
-                                        <td> {{ count($item->employees)}} </td>
+                                        <td> {{ count($item->users)}} </td>
 
                                        
                                         <style>
