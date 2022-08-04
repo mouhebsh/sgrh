@@ -13,10 +13,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
+// Middelware Routes for Roles & Permissions
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('/user', UserController::class);
+    Route::resource('/project', ProjectController::class);
+    Route::resource('/job', JobController::class);
+    Route::get("/logout", [AuthController::class, 'logout']);
+
+});
 Route::get("/login", [AuthController::class, 'login']);
-Route::get("/logout", [AuthController::class, 'logout']);
 Route::post("/authenticate", [AuthController::class, 'authenticate']);
-Route::resource('/user', UserController::class);
-Route::resource('/project', ProjectController::class);
-Route::resource('/job', JobController::class);
+
+
+
+    // Route::resource('/user', UserController::class)->middleware('auth');
+    // Route::resource('/project', ProjectController::class)->middleware('auth');
+    // Route::resource('/job', JobController::class)->middleware('auth');
+    // Route::get("/logout", [AuthController::class, 'logout'])->middleware('auth');
+    // Route::get("/login", [AuthController::class, 'login']);
+    // Route::post("/authenticate", [AuthController::class, 'authenticate']);
+
+
+
 

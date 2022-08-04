@@ -10,6 +10,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">Dashboard</h4>
+                        {{-- {{ $roles }} --}}
                     </div>
                 </div>
             </div>
@@ -60,6 +61,12 @@
                 <!-- ============================================================== -->
                 <!-- dashboard -->
                 <!-- ============================================================== -->
+                {{-- <script>
+                    $(document).ready(function () {
+                    $('#dtBasicExample').DataTable();
+                    $('.dataTables_length').addClass('bs-select');
+                    });
+                </script> --}}
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
@@ -67,7 +74,8 @@
                                 <h3 class="box-title mb-0">Employees</h3>
                             </div>
                             <div class="table-responsive">
-                            <table class="table">
+                            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+
                                 <thead>
                                     <tr>
                                         <th>#</th>

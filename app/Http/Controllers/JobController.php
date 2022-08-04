@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,8 @@ class JobController extends Controller
     public function index()
     {
         $jobs = Job::all();
-        return view ('jobs.index')->with('jobs', $jobs);
+        
+        return view ('jobs.index',compact('jobs'));
 
     }
 

@@ -9,17 +9,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
 
 
     public function index()
-    {
+    {       
 
-        $users = User::all();
-        //CONDITION TO REDIRECT RH OR SIMPLE USER
-            //PART OF RH
+            $users = User::all();
             $countleaders = 0;
             foreach($users as $item){
                 if($item->teamleader == 1){$countleaders++;}
@@ -32,10 +31,11 @@ class UserController extends Controller
 
 
     public function create()
-    {
+    {   
         $jobs = Job::all();
         $projects = Project::all();
-        return view('users.rh.create')->with('jobs', $jobs)->with('projects',$projects);
+        $roles = Role::pluck('name','name')->all();
+        return view('users.rh.create')->with('jobs', $jobs)->with('projects',$projects)->with('roles',$roles);
     }
 
 
@@ -50,7 +50,7 @@ class UserController extends Controller
                 'name' => 'required',
                 'address' => 'required',
                 'phone' => 'required|numeric|digits:8',
-                'email' => 'required|email|unique:users'
+                'email' => 'required|email|unique:users',
             ],
             [
                 'name.required' => 'You have to Input a name',
@@ -60,7 +60,7 @@ class UserController extends Controller
                 'phone.digits' => 'The phone number must have only 8 digits',
                 'email.required' => 'You have to Input a email',
                 'email.email' => 'this could not be and email format',
-                'email.unique' => 'this email is already used Check if you have done the registration'
+                'email.unique' => 'this email is already used Check if you have done the registration',
 
             ]
         );
@@ -71,6 +71,7 @@ class UserController extends Controller
         $user->address = request('address');
         $user->phone = request('phone');
         $user->email = request('email');
+        $user->roles = "user";
         $user->password = Hash::make(request('password'));
         $user->job_id = $job->id;
         if ($project == null){ 
@@ -100,8 +101,9 @@ class UserController extends Controller
     {
         $jobs = Job::all();
         $projects = Project::all();
-        $user = User::find($id);
-        return view('users.rh.edit')->with('users', $user)->with('jobs',$jobs)->with('projects',$projects);
+        $users = User::find($id);
+        $roles = Role::pluck('name','name')->all();
+        return view('users.rh.edit',compact('users','jobs','projects','roles','userRole'));
     }
 
 
@@ -112,7 +114,7 @@ class UserController extends Controller
                 'name' => 'required',
                 'address' => 'required',
                 'phone' => 'required|numeric|digits:8',
-                'email' => 'required|email'
+                'email' => 'required|email',
             
                 
             ],
@@ -124,7 +126,8 @@ class UserController extends Controller
                 'phone.digits' => 'The phone number must have only 8 digits',
                 'email.required' => 'You have to Input a email',
                 'email.email' => 'this could not be and email format',
-                'email.unique' => 'this email is already used Check if you have done the registration'
+                'email.unique' => 'this email is already used Check if you have done the registration',
+
 
             ]
         );
@@ -143,8 +146,11 @@ class UserController extends Controller
             $project = Project::where('name', $employee_project)->first();
             $user->project_id = $project->id;
         }
+        $user->assignRole($request->input('roles'));
+
 
         if ($user->save()) {
+            DB::table('model_has_roles')->where('model_id',$id)->delete();
             return redirect('user')->with('success', 'User Stored Successfully.');
         }
        
