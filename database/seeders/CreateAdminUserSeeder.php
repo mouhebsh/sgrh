@@ -25,14 +25,12 @@ class CreateAdminUserSeeder extends Seeder
             'address' => 'Sahloul',
             'birthday' => '1992-08-04',
             'job_id' => '1',
-            'password' => bcrypt('123456'),
-            'roles' => 'Rh'
+            'password' => bcrypt('123456')
         ]);
       
         $role = Role::create(['name' => 'Rh']);
-        $permissions = Permission::pluck('id','id')->all();
-        $user->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => []]);
-        $role->syncPermissions($permissions);
+        $role->givePermissionTo('user-list','user-create','user-edit','user-delete');
+        $user->givePermissionTo('user-list','user-create','user-edit','user-delete');
         $user->assignRole([$role->id]);
     }
 }

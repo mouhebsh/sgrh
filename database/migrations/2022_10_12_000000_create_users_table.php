@@ -23,8 +23,6 @@ return new class extends Migration
             $table->string('address');
             $table->date('birthday');   
             $table->boolean('teamleader')->default(0);
-            $table->string('roles')->default('user');
-
             $table->unsignedBigInteger('project_id')->nullable();
             $table->foreign('project_id')->references('id')->on('projects');
             $table->unsignedBigInteger('job_id')->nullable();

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Exists;
+use Spatie\Permission\Contracts\Permission;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -19,6 +21,8 @@ class UserController extends Controller
     {       
 
             $users = User::all();
+            // $role = Role::create(['name' => 'user']);
+
             $countleaders = 0;
             foreach($users as $item){
                 if($item->teamleader == 1){$countleaders++;}
@@ -34,8 +38,7 @@ class UserController extends Controller
     {   
         $jobs = Job::all();
         $projects = Project::all();
-        $roles = Role::pluck('name','name')->all();
-        return view('users.rh.create')->with('jobs', $jobs)->with('projects',$projects)->with('roles',$roles);
+        return view('users.rh.create',compact('jobs','projects'));
     }
 
 
@@ -67,11 +70,18 @@ class UserController extends Controller
 
 
         $user =  new User();
+
+        $role = Role::where('name', '=', 'user')->first();
+        if($role == null){
+            $role = Role::create(['name' => 'user']);
+            $role->givePermissionTo('user-list');
+        }
+        $user->assignRole([$role->id]);
+        $user->givePermissionTo('user-list');
         $user->name = request('name');
         $user->address = request('address');
         $user->phone = request('phone');
         $user->email = request('email');
-        $user->roles = "user";
         $user->password = Hash::make(request('password'));
         $user->job_id = $job->id;
         if ($project == null){ 
@@ -103,7 +113,7 @@ class UserController extends Controller
         $projects = Project::all();
         $users = User::find($id);
         $roles = Role::pluck('name','name')->all();
-        return view('users.rh.edit',compact('users','jobs','projects','roles','userRole'));
+        return view('users.rh.edit',compact('users','jobs','projects','roles'));
     }
 
 
@@ -150,7 +160,7 @@ class UserController extends Controller
 
 
         if ($user->save()) {
-            DB::table('model_has_roles')->where('model_id',$id)->delete();
+            // DB::table('model_has_roles')->where('model_id',$id)->delete();
             return redirect('user')->with('success', 'User Stored Successfully.');
         }
        

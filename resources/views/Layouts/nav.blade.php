@@ -1,4 +1,3 @@
-  
        <style>
                               .logo-img{
                                 height:50px;
@@ -95,7 +94,7 @@
                         @auth
                         <li>
                         
-                            <a class="profile-pic " href="#">
+                            <a class="profile-pic " href="{{ url('/user/' . session('id')) }}">
                                 <img src="{{asset('plugins/images/users/varun.jpg')}}" alt="user-img" width="36"
                                     class="img-circle"><span class="text-white font-medium">{{session('name')}}</span></a>
                         </li>

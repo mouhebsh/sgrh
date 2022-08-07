@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Contracts\Role;
+
 
 class ProjectController extends Controller
 {
@@ -117,7 +119,6 @@ class ProjectController extends Controller
             ]
         );
        $project->name = request('name');
-    //    $project->leader = request('leader');
        $project->owner = request('owner');
        $project->deadline = request('deadline');
        $newleader = request('leader'); // el input jdida mtaa el employee leader $emp_leader

@@ -10,6 +10,7 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
+                        @can('user-create')
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('user/create')}}"
                                 aria-expanded="false">
@@ -17,6 +18,7 @@
                                 <span class="hide-menu">Add New Employee</span>
                             </a>
                         </li>
+                        @endcan
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('job')}}"
                                 aria-expanded="false">

@@ -31,7 +31,7 @@
                         </div>
                     </div>
 
-
+@can('user-create')
                     <div class="col-lg-8 col-md-12">
                     <form class="form-horizontal form-material" action="{{ url('job')}} " method="post">
                         {!! csrf_field() !!}
@@ -74,6 +74,7 @@
                         </div>
                     </form>
                     </div>
+                    @endcan
                 <!-- ============================================================== -->
                 <!-- dashboard -->
                 <!-- ============================================================== -->
@@ -111,6 +112,7 @@
                                             gap:0.2rem;
                                         }
                                         </style>
+                                        @can('user-delete')
  
                                         <td class="buttons-flex">
                                             <form  method="POST" action="{{ url('/user' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
@@ -119,6 +121,7 @@
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Employee" onclick="return confirm(&quot;Are You Sure You Want To Delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
                                         </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                                 </tbody>
