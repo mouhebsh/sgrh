@@ -33,14 +33,14 @@
                                 <span class="hide-menu">List Projects</span>
                             </a>
                         </li>
-                        {{-- <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('user/notify')}}"
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('conversations')}}"
                                 aria-expanded="false">
                                 <i class="fa fa-font" aria-hidden="true"></i>
                                 <span class="hide-menu">Contact Someone</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                       {{--  <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('user/myNotifications')}}"
                                 aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
