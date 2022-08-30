@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: pma-deployment
+  # namespace: mysql-database  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pma
+  template:
+    metadata:
+      labels:
+        app: pma
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      imagePullSecrets:
+      - name: mysecret1
+      containers:
+      - name: pma
+        image: laravelregistry.azurecr.io/phpmyadmin/phpmyadmin:latest
+        env:
+        - name: PMA_HOST
+          value: "db"
+        - name:  PMA_PORT
+          value: "3306"
+        - name: PMA_ARBITRARY
+          value: "1"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pma-service
+  # namespace: mysql-database
+spec:
+  ports:
+  - port: 8081
+    protocol: TCP
+    targetPort: 8081
+    nodePort: 30000
+  selector:
+    app: pma
+  type: NodePort 

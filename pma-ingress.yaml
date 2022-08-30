@@ -1,0 +1,8 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: pma-ingress
+spec:
+  backend:
+    serviceName: pma-service
+    servicePort: 8081
